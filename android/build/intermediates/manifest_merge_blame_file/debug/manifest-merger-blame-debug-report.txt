@@ -1,0 +1,18 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.bmateam.reactnativeusbserial"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+7-->/home/vmaury/WebstormProjects/reacttest1/node_modules/react-native-usbserial/android/src/main/AndroidManifest.xml:4:5-44
+8        android:minSdkVersion="16"
+8-->/home/vmaury/WebstormProjects/reacttest1/node_modules/react-native-usbserial/android/src/main/AndroidManifest.xml:4:15-41
+9        android:targetSdkVersion="22" />
+9-->/home/vmaury/WebstormProjects/reacttest1/node_modules/react-native-usbserial/android/src/main/AndroidManifest.xml:4:5-44
+10
+11    <uses-feature android:name="android.hardware.usb.host" />
+11-->/home/vmaury/WebstormProjects/reacttest1/node_modules/react-native-usbserial/android/src/main/AndroidManifest.xml:3:5-62
+11-->/home/vmaury/WebstormProjects/reacttest1/node_modules/react-native-usbserial/android/src/main/AndroidManifest.xml:3:19-59
+12
+13</manifest>

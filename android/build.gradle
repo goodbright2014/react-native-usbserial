@@ -1,0 +1,47 @@
+buildscript {
+  repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+  }
+
+  dependencies {
+    classpath 'com.android.tools.build:gradle:1.2.3'
+  }
+}
+
+allprojects {
+  repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+  }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+  compileSdkVersion 23
+  buildToolsVersion "23.0.1"
+
+  defaultConfig {
+    minSdkVersion 16
+    targetSdkVersion 22
+    versionCode 1
+    versionName "1.0"
+  }
+  lintOptions {
+    abortOnError false
+    warning 'InvalidPackage'
+  }
+}
+
+repositories {
+  mavenCentral()
+  maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+  // compile "com.facebook.react:react-native:0.19.+"
+  compile "com.facebook.react:react-native:0.63.+"
+  // compile 'com.hoho.android:usb-serial-for-android:0.2.0-SNAPSHOT@aar'
+  compile 'com.github.mik3y:usb-serial-for-android:3.4.0'
+}

@@ -1,0 +1,9 @@
+com/bmateam/reactnativeusbserial/BuildConfig.java
+ com.bmateam.reactnativeusbserial.BuildConfig
+com/bmateam/reactnativeusbserial/ReactUsbSerialPackage.java
+ com.bmateam.reactnativeusbserial.ReactUsbSerialPackage
+com/bmateam/reactnativeusbserial/ReactUsbSerialModule.java
+ com.bmateam.reactnativeusbserial.ReactUsbSerialModule
+ com.bmateam.reactnativeusbserial.ReactUsbSerialModule$1
+com/bmateam/reactnativeusbserial/UsbSerialDevice.java
+ com.bmateam.reactnativeusbserial.UsbSerialDevice
