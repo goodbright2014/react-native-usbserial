@@ -20,7 +20,7 @@ import com.facebook.react.bridge.WritableMap;
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
-import com.hoho.android.usbserial.driver.CustomProber;
+import com.hoho.android.usbserial.driver.ProbeTable;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -189,9 +189,17 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
         if (prodId == 0)
             throw new Error(new Error("The deviceObject is not a valid 'UsbDevice' reference"));
 
-        //List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
-        List<UsbSerialDriver> availableDrivers = CustomProber.getCustomProber().findAllDrivers(manager);
 
+        // Probe for our custom CDC devices, which use VID 0x1234
+        // and PIDS 0x0001 and 0x0002.
+        ProbeTable customTable = new ProbeTable();
+        customTable.addProduct(0x2341, 0x43, CdcAcmSerialDriver.class);
+
+        UsbSerialProber prober = new UsbSerialProber(customTable);
+        List<UsbSerialDriver> availableDrivers = prober.findAllDrivers(manager);
+        // ...
+        //List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
+        
         // Reject if no driver is available
         if (availableDrivers.isEmpty())
             throw new Exception("No available drivers to communicate with devices");
