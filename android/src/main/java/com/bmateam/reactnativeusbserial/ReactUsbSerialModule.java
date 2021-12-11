@@ -118,7 +118,7 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
             }
             Const line = usd.readAsync(p);
 
-            String booleanString = String.fromCharCode(line));
+            String booleanString = String.fromCharCode(line);
 
             p.resolve(booleanString);
 
