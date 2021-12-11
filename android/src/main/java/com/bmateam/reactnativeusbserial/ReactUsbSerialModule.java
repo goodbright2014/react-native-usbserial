@@ -21,6 +21,8 @@ import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
 import com.hoho.android.usbserial.driver.ProbeTable;
+import com.hoho.android.usbserial.driver.CdcAcmSerialDriver;
+
 
 import java.io.IOException;
 import java.util.HashMap;
