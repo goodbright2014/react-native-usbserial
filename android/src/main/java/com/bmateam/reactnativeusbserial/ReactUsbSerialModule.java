@@ -185,7 +185,22 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
 
         return usbManager;
     }
+private UsbSerialDriver getAvailableDriver(int prodId, UsbManager manager) throws Exception {
 
+        if (prodId == 0)
+            throw new Error(new Error("The deviceObject is not a valid 'UsbDevice' reference"));
+
+
+        // Probe for our custom CDC devices, which use VID 0x1234
+        // and PIDS 0x0001 and 0x0002.
+        ProbeTable customTable = new ProbeTable();
+        customTable.addProduct(0x2341, 0x43, CdcAcmSerialDriver.class);
+
+        UsbSerialProber prober = new UsbSerialProber(customTable);
+        List<UsbSerialDriver> availableDrivers = prober.findAllDrivers(manager);
+        return availableDrivers[0];
+       
+    }
     private UsbSerialDriver getUsbSerialDriver(int prodId, UsbManager manager) throws Exception {
 
         if (prodId == 0)
