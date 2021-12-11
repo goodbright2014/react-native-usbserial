@@ -185,7 +185,19 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
 
         return usbManager;
     }
-private List<UsbSerialDriver>  getAvailableDriver(int prodId, UsbManager manager) throws Exception {
+
+        public void openDeviceAsync(ReadableMap deviceObject, Promise p) {
+
+        try {
+            int prodId = deviceObject.getInt("productId");
+            UsbManager manager = getUsbManager();
+            UsbSerialDriver driver = getUsbSerialDriver(prodId, manager);
+
+    @ReactMethod
+     public List<UsbSerialDriver>  getAvailableDriver(ReadableMap deviceObject, Promise p) throws Exception {
+            int prodId = deviceObject.getInt("productId");
+            UsbManager manager = getUsbManager();
+           
 
         if (prodId == 0)
             throw new Error(new Error("The deviceObject is not a valid 'UsbDevice' reference"));
