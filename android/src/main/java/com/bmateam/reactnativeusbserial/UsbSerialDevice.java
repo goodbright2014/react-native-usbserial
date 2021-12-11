@@ -31,10 +31,13 @@ public class UsbSerialDevice {
     }
 
     public void readAsync(Promise promise) {
-
+        byte[] buffer = new byte[];
+        
         if (port != null) {
             // TODO
-            promise.resolve(null);
+            port.read(buffer , SERIAL_TIMEOUT);
+
+            promise.resolve(buffer);
         } else {
             promise.resolve(getNoPortErrorMessage());
         }
