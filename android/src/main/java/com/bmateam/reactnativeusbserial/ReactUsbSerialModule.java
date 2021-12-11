@@ -188,7 +188,7 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
 
 
     @ReactMethod
-     public List<UsbSerialDriver>  getAvailableDriver(ReadableMap deviceObject, Promise p) {
+     public void getAvailableDriver(ReadableMap deviceObject, Promise p) {
             
         int prodId = deviceObject.getInt("productId");
         UsbManager manager = getUsbManager();
@@ -204,7 +204,8 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
 
         UsbSerialProber prober = new UsbSerialProber(customTable);
         List<UsbSerialDriver> availableDrivers = prober.findAllDrivers(manager);
-        return availableDrivers;
+       
+        p.resolve(availableDrivers);
         //  for (UsbSerialDriver drv : availableDrivers) {
         //         return drv;
         //  }
