@@ -127,7 +127,7 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
             // }
             byte[] data = usd.readAsync(p);
             if( data.length > 0) {
-                p.resolve(data)
+                p.resolve(data);
             }
 
         } catch (Exception e) {
