@@ -186,12 +186,6 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
         return usbManager;
     }
 
-        public void openDeviceAsync(ReadableMap deviceObject, Promise p) {
-
-        try {
-            int prodId = deviceObject.getInt("productId");
-            UsbManager manager = getUsbManager();
-            UsbSerialDriver driver = getUsbSerialDriver(prodId, manager);
 
     @ReactMethod
      public List<UsbSerialDriver>  getAvailableDriver(ReadableMap deviceObject, Promise p) {
