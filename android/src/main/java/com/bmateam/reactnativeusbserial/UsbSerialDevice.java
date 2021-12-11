@@ -31,8 +31,8 @@ public class UsbSerialDevice {
     }
 
     public void readAsync(Promise promise) {
-        byte[] buffer = new byte[];
-        
+        byte[] buffer = new byte[256];
+
         if (port != null) {
             // TODO
             port.read(buffer , SERIAL_TIMEOUT);
