@@ -20,6 +20,7 @@ import com.facebook.react.bridge.WritableMap;
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
+import com.hoho.android.usbserial.driver.CustomProber;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -189,7 +190,7 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
             throw new Error(new Error("The deviceObject is not a valid 'UsbDevice' reference"));
 
         //List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
-        List<UsbSerialDriver> availableDrivers = UsbSerialProber.getCustomProber().findAllDrivers(manager);
+        List<UsbSerialDriver> availableDrivers = CustomProber.getCustomProber().findAllDrivers(manager);
 
         // Reject if no driver is available
         if (availableDrivers.isEmpty())
