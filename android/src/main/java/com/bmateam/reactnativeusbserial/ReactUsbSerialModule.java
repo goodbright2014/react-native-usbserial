@@ -117,14 +117,17 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
                 throw new Exception(String.format("No device opened for the id '%s'", deviceId));
             }
             //byte[] line = usd.readAsync(p);
-            void readUsbSerialAsync = () => {
-                usd.readAsync(p);
-            }.then (line)  {
-                String booleanString = String.fromCharCode(line);
+            // void readUsbSerialAsync = () => {
+            //     usd.readAsync(p);
+            // }.then (line)  {
+            //     String booleanString = String.fromCharCode(line);
 
-                p.resolve(booleanString);
+            //     p.resolve(booleanString);
 
-            }
+            // }
+            usd.readAsync(p).then(result => {
+                p.resolve(result);
+            })
 
 
         } catch (Exception e) {
