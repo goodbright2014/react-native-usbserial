@@ -47,7 +47,7 @@ public class UsbSerialDevice {
         } catch(IOException e ) {
            //
         }
-        return ([]);
+        return data;
     }
 
     private Exception getNoPortErrorMessage() {
