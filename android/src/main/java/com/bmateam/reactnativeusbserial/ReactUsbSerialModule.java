@@ -198,7 +198,7 @@ private UsbSerialDriver getAvailableDriver(int prodId, UsbManager manager) throw
 
         UsbSerialProber prober = new UsbSerialProber(customTable);
         List<UsbSerialDriver> availableDrivers = prober.findAllDrivers(manager);
-        return availableDrivers[0];
+        return availableDrivers;
        
     }
     private UsbSerialDriver getUsbSerialDriver(int prodId, UsbManager manager) throws Exception {
