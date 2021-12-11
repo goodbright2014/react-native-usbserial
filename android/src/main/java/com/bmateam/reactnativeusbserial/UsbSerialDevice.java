@@ -43,10 +43,11 @@ public class UsbSerialDevice {
             } else {
                 //promise.reject(getNoPortErrorMessage());
             }
+        
         } catch(IOException e ) {
            //
         }
-
+        return ([]);
     }
 
     private Exception getNoPortErrorMessage() {
