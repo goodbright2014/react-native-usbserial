@@ -21,7 +21,7 @@ import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
 import com.hoho.android.usbserial.driver.ProbeTable;
-import com.hoho.android.usbserial.driver.FtdiSerialDriver;
+import com.hoho.android.usbserial.driver.CdcAcmSerialDriver;
 
 
 import java.io.IOException;
@@ -200,7 +200,7 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
         // Probe for our custom CDC devices, which use VID 0x1234
         // and PIDS 0x0001 and 0x0002.
         ProbeTable customTable = new ProbeTable();
-        customTable.addProduct(0x2341, 0x43, FtdiSerialDriver.class);
+        customTable.addProduct(0x2341, 0x43, CdcAcmSerialDriver.class);
 
         UsbSerialProber prober = new UsbSerialProber(customTable);
         List<UsbSerialDriver> availableDrivers = prober.findAllDrivers(manager);
@@ -223,7 +223,7 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
         // Probe for our custom CDC devices, which use VID 0x1234
         // and PIDS 0x0001 and 0x0002.
         ProbeTable customTable = new ProbeTable();
-        customTable.addProduct(0x2341, 0x43, FtdiSerialDriver.class);
+        customTable.addProduct(0x2341, 0x43, CdcAcmSerialDriver.class);
 
         UsbSerialProber prober = new UsbSerialProber(customTable);
         List<UsbSerialDriver> availableDrivers = prober.findAllDrivers(manager);
