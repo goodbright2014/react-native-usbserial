@@ -200,7 +200,7 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
         // Probe for our custom CDC devices, which use VID 0x1234
         // and PIDS 0x0001 and 0x0002.
         ProbeTable customTable = new ProbeTable();
-        customTable.addProduct(0x2341, 0x43, CdcAcmSerialDriver.class);
+        customTable.addProduct(9025, 67, CdcAcmSerialDriver.class);
 
         UsbSerialProber prober = new UsbSerialProber(customTable);
         List<UsbSerialDriver> availableDrivers = prober.findAllDrivers(manager);
