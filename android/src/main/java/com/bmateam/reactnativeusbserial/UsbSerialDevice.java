@@ -1,9 +1,14 @@
 package com.bmateam.reactnativeusbserial;
 
+import android.util.Base64;
+
 import com.facebook.react.bridge.Promise;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 
 import java.io.IOException;
+
+import java.nio.charset.StandardCharsets;
+
 
 public class UsbSerialDevice {
     private UsbSerialPort port;
@@ -64,7 +69,7 @@ public class UsbSerialDevice {
             else {
                 promise.resolve(Base64.encodeToString(data, Base64.NO_WRAP));
             } */
-            
+
 
         } else {
             promise.reject(getNoPortErrorMessage());
