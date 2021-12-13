@@ -49,7 +49,27 @@ public class UsbSerialDevice {
         }
         return data;
     }
+    public void readAsync(int size, Promise promise) throws IOException {
+        if (port != null) {
+            final byte[] data = new byte[size];
+            int got = port.read(data, SERIAL_TIMEOUT * 4);
 
+            promise.resolve(Base64.encodeToString(data, Base64.NO_WRAP));
+
+            /*
+            if (got 0)
+            {
+                promise.reject(gotInvalidByteCountOnRead(size, got));
+            }
+            else {
+                promise.resolve(Base64.encodeToString(data, Base64.NO_WRAP));
+            } */
+            
+
+        } else {
+            promise.reject(getNoPortErrorMessage());
+        }
+    }
     private Exception getNoPortErrorMessage() {
         return new Exception("No port present for the UsbSerialDevice instance");
     }
