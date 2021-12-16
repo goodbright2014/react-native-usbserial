@@ -135,12 +135,12 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
         UsbDeviceConnection connection = manager.openDevice(driver.getDevice());
 
         // Most have just one port (port 0).
-        UsbSerialPort port = driver.getPorts().get(2);
+        UsbSerialPort port = driver.getPorts().get(0);
 
         port.open(connection);
         port.setParameters(9600, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
-        port.setDTR(true);
-        port.setRTS(true);
+        //port.setDTR(true);
+        //port.setRTS(true);
 
         String id = generateId();
         UsbSerialDevice usd = new UsbSerialDevice(port);
@@ -193,7 +193,7 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
         // Probe for our custom CDC devices, which use VID 0x1234
         // and PIDS 0x0001 and 0x0002.
         ProbeTable customTable = new ProbeTable();
-        customTable.addProduct(0x4DD, 0x97CB, CdcAcmSerialDriver.class);
+        customTable.addProduct(0x2341, 0x43, CdcAcmSerialDriver.class);
 
         UsbSerialProber prober = new UsbSerialProber(customTable);
         List<UsbSerialDriver> availableDrivers = prober.findAllDrivers(manager);
@@ -216,7 +216,7 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
         // Probe for our custom CDC devices, which use VID 0x1234
         // and PIDS 0x0001 and 0x0002.
         ProbeTable customTable = new ProbeTable();
-        customTable.addProduct(0x4DD, 0x97CB, CdcAcmSerialDriver.class);
+        customTable.addProduct(0x2341, 0x43, CdcAcmSerialDriver.class);
 
         UsbSerialProber prober = new UsbSerialProber(customTable);
         List<UsbSerialDriver> availableDrivers = prober.findAllDrivers(manager);
