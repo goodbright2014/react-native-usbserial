@@ -180,48 +180,19 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
     }
 
 
-    @ReactMethod
-     public void getAvailableDriver(ReadableMap deviceObject, Promise p) {
-            
-        int prodId = deviceObject.getInt("productId");
-        UsbManager manager = getUsbManager();
-           
-        if (prodId == 0)
-            throw new Error(new Error("The deviceObject is not a valid 'UsbDevice' reference"));
-
-
-        // Probe for our custom CDC devices, which use VID 0x1234
-        // and PIDS 0x0001 and 0x0002.
-        ProbeTable customTable = new ProbeTable();
-        customTable.addProduct(0x2341, 0x43, CdcAcmSerialDriver.class);
-
-        UsbSerialProber prober = new UsbSerialProber(customTable);
-        List<UsbSerialDriver> availableDrivers = prober.findAllDrivers(manager);
-       
-        p.resolve(availableDrivers);
-        //  for (UsbSerialDriver drv : availableDrivers) {
-        //         return drv;
-        //  }
-        // // Reject if no driver exists for the current productId
-        // throw new Exception(String.format("No driver found for productId '%s'", prodId));
-    }
-
-
     private UsbSerialDriver getUsbSerialDriver(int prodId, UsbManager manager) throws Exception {
 
         if (prodId == 0)
             throw new Error(new Error("The deviceObject is not a valid 'UsbDevice' reference"));
 
+        // ProbeTable customTable = new ProbeTable();
+        // customTable.addProduct(0x2341, 0x43, CdcAcmSerialDriver.class);
 
-        // Probe for our custom CDC devices, which use VID 0x1234
-        // and PIDS 0x0001 and 0x0002.
-        ProbeTable customTable = new ProbeTable();
-        customTable.addProduct(0x2341, 0x43, CdcAcmSerialDriver.class);
+        // UsbSerialProber prober = new UsbSerialProber(customTable);
+        // List<UsbSerialDriver> availableDrivers = prober.findAllDrivers(manager);
 
-        UsbSerialProber prober = new UsbSerialProber(customTable);
-        List<UsbSerialDriver> availableDrivers = prober.findAllDrivers(manager);
-        // ...
-        //List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
+
+        List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
         
         // Reject if no driver is available
         if (availableDrivers.isEmpty())

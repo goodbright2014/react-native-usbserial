@@ -35,25 +35,7 @@ public class UsbSerialDevice {
         }
     }
 
-    public byte[] readAsync(Promise promise) {
-        final byte[] data = new byte[256];
-        try {
-             if (port != null) {
-            // TODO
-                int num = port.read(data , SERIAL_TIMEOUT);
-                if(num >0) {
-                    return data;
-                }
-
-            } else {
-                //promise.reject(getNoPortErrorMessage());
-            }
-        
-        } catch(IOException e ) {
-           //
-        }
-        return data;
-    }
+    
     public void readAsync(int size, Promise promise) throws IOException {
         if (port != null) {
             final byte[] data = new byte[size];
