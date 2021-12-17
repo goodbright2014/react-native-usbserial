@@ -21,7 +21,7 @@ import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
 import com.hoho.android.usbserial.driver.ProbeTable;
-import com.hoho.android.usbserial.driver.CdcAcmSerialDriver;
+import com.hoho.android.usbserial.driver.FtdiSerialDriver;
 
 
 import java.io.IOException;
@@ -135,7 +135,7 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
         UsbDeviceConnection connection = manager.openDevice(driver.getDevice());
 
         // Most have just one port (port 0).
-        UsbSerialPort port = driver.getPorts().get(0);
+        UsbSerialPort port = driver.getPorts().get(2);
 
         port.open(connection);
         port.setParameters(9600, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
@@ -185,14 +185,14 @@ public class ReactUsbSerialModule extends ReactContextBaseJavaModule {
         if (prodId == 0)
             throw new Error(new Error("The deviceObject is not a valid 'UsbDevice' reference"));
 
-        // ProbeTable customTable = new ProbeTable();
-        // customTable.addProduct(0x2341, 0x43, CdcAcmSerialDriver.class);
+        ProbeTable customTable = new ProbeTable();
+        customTable.addProduct(0x2341, 0x43, FtdiSerialDriver.class);
 
-        // UsbSerialProber prober = new UsbSerialProber(customTable);
-        // List<UsbSerialDriver> availableDrivers = prober.findAllDrivers(manager);
+        UsbSerialProber prober = new UsbSerialProber(customTable);
+        List<UsbSerialDriver> availableDrivers = prober.findAllDrivers(manager);
 
 
-        List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
+        //List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
         
         // Reject if no driver is available
         if (availableDrivers.isEmpty())
